@@ -1,3 +1,6 @@
+# Simple R script to demonstrate how to use serialConnection package with 
+# analog input and digital output
+
 library(serial)
 # port can be determined by using listPorts()
 # replace "tty" with "cu", failing to do so will cause R to crash

@@ -1,26 +1,23 @@
-int readPin = 0;
+int potentioPin = 0; // Analog input pin
 int ledPin = 7;
-int read = 0;
-char input;
   
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
+  pinMode(ledPin, OUTPUT);   // potentiometer input pin
+  digitalWrite(ledPin, LOW); // Digital output LED
 }
   
 void loop() {
-  // put your main code here, to run repeatedly:
-  read = analogRead(readPin);
+  int read = analogRead(potentioPin);
   Serial.println(read);
-  delay(100);
+
   if (Serial.available() > 0) {
-    input = Serial.read();
+    char input = Serial.read();
     if (input == 'a') {
       digitalWrite(ledPin, HIGH);
       delay(100);
       digitalWrite(ledPin, LOW);
     }
   }
+  delay(100);
 }
