@@ -2,7 +2,7 @@ int potentioPin = 0; // Analog input pin
 int ledPin = 7;
   
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(19200);
   pinMode(ledPin, OUTPUT);   // potentiometer input pin
   digitalWrite(ledPin, LOW); // Digital output LED
 }

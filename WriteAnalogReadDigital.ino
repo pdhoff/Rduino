@@ -2,7 +2,7 @@ int ledPin = 5;
 int buttonPin = 2;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(19200);
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT);
 }
