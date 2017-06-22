@@ -14,9 +14,7 @@ void loop() {
   if (Serial.available() > 0) {
     char input = Serial.read();
     if (input == 'a') {
-      digitalWrite(ledPin, HIGH);
-      delay(100);
-      digitalWrite(ledPin, LOW);
+      digitalWrite(ledPin, !digitalRead(ledPin));
     }
   }
   delay(100);

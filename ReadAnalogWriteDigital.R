@@ -12,5 +12,7 @@ Sys.sleep(2)
 # read in from buffer
 cat(read.serialConnection(con))
 write.serialConnection(con, "a")
+Sys.sleep(1)
+write.serialConnection(con, "a")
 close(con)
  
