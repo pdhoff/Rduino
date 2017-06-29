@@ -15,7 +15,7 @@ void loop() {
 
   if (Serial.available()) {
     int read = Serial.parseInt();
-    Serial.println(read);
+    //Serial.println(read);
     analogWrite(ledPin, read);
   }
   delay(100);
