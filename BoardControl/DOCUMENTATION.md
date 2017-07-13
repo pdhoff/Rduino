@@ -5,15 +5,15 @@ The Board class creates an abstraction of an Arduino so that other languages can
 ## Usage
 
 There are four commands that can be issed via writing to the serial connection:
-1. “digWrite,<pin>,<value>”
-2. “digRead,<pin>”
-3. “anWrite,<pin>,<value>”
-4. “anRead,<pin>”
+1. “digWrite,pin,value”
+2. “digRead,pin”
+3. “anWrite,pin,value”
+4. “anRead,pin”
 
 digWrite identifies a digital pin and then outputs either HIGH or LOW, depending on whether value is 1 or 0.
 ``` 
 // In R using the serial package
-con <- serialConnection(name, port, mode, newline=0,)
+con <- serialConnection(name, port, mode, newline=0)
 open(con)
 write.serialConnection(con, "digWrite,2,1")    // sets digital pin 2 to HIGH
 ```
