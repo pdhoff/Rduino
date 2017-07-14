@@ -1,0 +1,15 @@
+Package: serial
+Type: Package
+Title: The Serial Interface Package
+Version: 1.3
+Date: 2016-04-11
+Author: Martin Seilmayer
+Maintainer: Martin Seilmayer <m.seilmayer@hzdr.de>
+Description: Provides functionality for the use of the internal hardware for
+             RS232/RS422/RS485 and any other virtual serial interfaces of the
+             computer.
+Depends: R (>= 2.15.0)
+License: GPL-2
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2016-11-24 11:33:54 UTC; ms5760
