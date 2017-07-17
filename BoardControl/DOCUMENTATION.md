@@ -1,6 +1,6 @@
-# The Board Library
+# BoardControl
 
-The Board class creates an abstraction of an Arduino so that other languages can interface with it by reading from and writing to the device file associated with the Arduino.
+BoardControl interprets strings received via the serial connection so that other languages can interface with the Arduino by reading from and writing to associated device file.
 
 ## Usage
 
@@ -31,6 +31,3 @@ anRead identifies an analog pin and reads in from that pin, writing a value betw
 write.serialConnection(con, "anRead,5")        # reads in from analog pin 5
 read.serialConnection(con)                     # prints results to console
 ```
-## How it works 
-
-The constructor sets the baud rate for the serial connection; this is the only part of the Arduino code that should ever require the user’s intervention. The call to uno.communicate() begins the serial connection and waits until it receives a command through the serial connection. The command is then parsed, and if it is valid, the appropriate method is called, ultimately reading from or writing to the Arduino.
