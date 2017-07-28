@@ -14,13 +14,17 @@ void setup() {
   pinMode(digPin11, OUTPUT);
   pinMode(digPin12, OUTPUT);
   pinMode(digPin13, OUTPUT);
-  Serial.begin(9600);
+  // Otherwise strange bits are written to serial
+  delay(100);
+  Serial.begin(19200);
+
 }
 
 void loop() {
   // If input has been received via Serial
   if (Serial.available() > 0) {
-    String input = Serial.readString();
+    String input = Serial.readStringUntil('\n');
+    Serial.println("");     
     int arr[2];  // To be used for holding parameters
     // Parses command to be executed and adds parameters to arr
     String command = parseArgs(input, arr);
