@@ -40,19 +40,19 @@ There are four main commands that can be issed via writing to the serial connect
 set_dpin identifies a digital pin and then outputs either HIGH or LOW, depending on whether value is 1 or 0.
 ```R 
 # In R using the serial package
-set_dpin(2,1)     # sets digital pin 2 to HIGH
+set_dpin(2, 1)     # sets digital pin 2 to HIGH
 ```
 get_dpin identifies a digital pin and reads in from that pin, writing 0 or 1 to the serial connection.
 ```R
-get_dpin(4)       # reads in from digital pin 4 and returns results
+get_dpin(4)        # reads in from digital pin 4 and returns results
 ```
 set_apin identifies a digital pin (**must have pwm functionality to work properly**) and outputs a range of voltages represented by 0-255, which is the scale on which analogWrite is based on.
 ```R
-set_apin(11,128)  # writes a value of 128 to pin 11
+set_apin(11, 128)  # writes a value of 128 to pin 11
 ```
-anRead identifies an analog pin and reads in from that pin, writing a value between 0-1023 to the serial connection, which is the scale on which analogRead is based on.
+get_apin identifies an analog pin and reads in from that pin, writing a value between 0-1023 to the serial connection, which is the scale on which analogRead is based on.
 ```R
-get_apin(5)       # reads in from analog pin 5 and returns results
+get_apin(5)        # reads in from analog pin 5 and returns results
 ```
 After finishing work with Rduino, run the following to close the serial connection:
 ```R
