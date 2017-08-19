@@ -2,14 +2,28 @@ library(serial)
 
 rduino_connect<-function()
 {
-  port<-suppressMessages(listPorts())
-  port<-port[grep("modem",port)[1]]
-  port<-gsub("tty","cu",port)
+	port <- ""
+	if (version$os == "linux-gnu") 
+	{
+		port<-list.files(path="/dev/serial/by-id")
+		port<-Sys.readlink(paste("/dev/serial/by-id/",port,sep=""))
+		port<-gsub("../","",port)
+	}
+	else if (grepl("darwin", version$os)) 	
+	{
+  		port<-suppressMessages(listPorts())
+  		port<-port[grep("modem",port)[1]]
+  		port<-gsub("tty","cu",port)
+	} 
+	else
+	{
+		stop("Other platforms not supported yet")
+	}
 
-  rduino_connection<<-serialConnection(name="rdcon",port=port,
-	mode="19200,n,8,1",buffering="none",newline=1,translation="lf")
+  	rduino_connection<<-serialConnection(name="rdcon",port=port,
+	  mode="19200,n,8,1",buffering="none",newline=1,translation="lf")
 
-  open(rduino_connection) 
+  	open(rduino_connection) 
 } 
 
 set_dpin<-function(pin,value)   
@@ -19,31 +33,31 @@ set_dpin<-function(pin,value)
 
 get_dpin<-function(pin)
 { 
-  write.serialConnection(rduino_connection,paste("digRead",pin,sep=","))      
-  val<-NA 
-  while(is.na(val))
-  {
-  	tmp<-read.serialConnection(rduino_connection)
-    val<-as.numeric(gsub('\\n','',tmp))  
-  }
-  val
+  	write.serialConnection(rduino_connection,paste("digRead",pin,sep=","))      
+  	val<-NA 
+ 	while(is.na(val))
+ 	{
+  		tmp<-read.serialConnection(rduino_connection)
+   		val<-as.numeric(gsub('\\n','',tmp))  
+  	}
+  	val
 }
 
 set_apin<-function(pin,value)
 {
-  write.serialConnection(rduino_connection,paste("anWrite",pin,value,sep=","))
+  	write.serialConnection(rduino_connection,paste("anWrite",pin,value,sep=","))
 }
 
 get_apin<-function(pin)
 {
-  write.serialConnection(rduino_connection,paste("anRead",pin,sep=",")) 
-  val<-NA
-  while(is.na(val))
-  {
-    tmp<-read.serialConnection(rduino_connection) 
-   	val<-as.numeric(gsub('\\n','',tmp))
-  } 
-  val 
+  	write.serialConnection(rduino_connection,paste("anRead",pin,sep=",")) 
+  	val<-NA
+  	while(is.na(val))
+  	{
+    		tmp<-read.serialConnection(rduino_connection) 
+   		val<-as.numeric(gsub('\\n','',tmp))
+  	} 
+  	val 
 }
 
 rduino_close <- function() 
