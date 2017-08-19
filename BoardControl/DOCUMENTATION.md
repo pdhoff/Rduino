@@ -22,6 +22,7 @@ The R serial package uses Tcl to allow R to read from and write to the device fi
 ### Usage
 
 ##### Setup
+**Linux Only:** Follow the instructions at [this website] [6] to allow access to the device files associated with the Arduino.
 Download the files, open BoardControl.ino in the BoardControl folder, and then upload the code to the Arduino from within the Arduino IDE. In R, run the following:
 ```R
 setwd(“path-to-directory”) 
@@ -64,3 +65,4 @@ rduino_close()
 [3]: https://www.arduino.cc/en/Tutorial/PWM
 [4]: https://learn.sparkfun.com/tutorials/serial-communication
 [5]: http://tldp.org/HOWTO/Text-Terminal-HOWTO-7.html
+[6]: https://www.arduino.cc/en/Guide/Linux
