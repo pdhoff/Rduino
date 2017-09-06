@@ -1,6 +1,6 @@
 library(serial)
 
-rduino_connect<-function()
+rduino_connect<-function(baudMode)
 {
 	port <- ""
 	if (version$os == "linux-gnu") 
@@ -21,7 +21,7 @@ rduino_connect<-function()
 	}
 
   	rduino_connection<<-serialConnection(name="rdcon",port=port,
-	  mode="19200,n,8,1",buffering="none",newline=1,translation="lf")
+	  mode=baudMode,buffering="none",newline=1,translation="lf")
 
   	open(rduino_connection) 
 } 

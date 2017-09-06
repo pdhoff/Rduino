@@ -1,6 +1,6 @@
 source("../BoardControl/functions.R")
-rduino_connect()
-Sys.sleep(2)
+rduino_connect("19200,n,8,1")
+Sys.sleep(2)  # Allow time for the connection to initialize
 
 off <- get_apin(5)
 while (off != 1023) {
