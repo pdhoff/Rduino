@@ -1,6 +1,5 @@
 source("../BoardControl/functions.R")
-rduino_connect("19200,n,8,1")
-Sys.sleep(2)  # Allow time for the connection to initialize
+rduino_connect("9600,n,8,1")
 
 off <- get_apin(5)
 while (off != 1023) {
@@ -11,4 +10,8 @@ while (off != 1023) {
 	set_dpin(11, switch)
 	off <- get_apin(5)
 }	
+set_dpin(2, 0)
+set_dpin(5, 0)
+set_dpin(8, 0)
+set_dpin(11, 0)
 rduino_close()

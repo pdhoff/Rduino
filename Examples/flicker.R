@@ -1,8 +1,7 @@
 source("../BoardControl/functions.R")
 
 delay <- 0.05
-rduino_connect("19200,n,8,1")
-Sys.sleep(2)  # Allow time for the connection to initialize
+rduino_connect("9600,n,8,1")
 
 for (i in 0:9) {
 	set_dpin(8, 1)

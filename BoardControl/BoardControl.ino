@@ -15,16 +15,15 @@ void setup() {
   pinMode(digPin12, OUTPUT);
   pinMode(digPin13, OUTPUT);
   // Otherwise strange bits are written to serial
-  delay(100);
-  Serial.begin(19200);
+  delay(500);
+  Serial.begin(9600);
 
 }
 
 void loop() {
   // If input has been received via Serial
   if (Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n');
-    Serial.println("");     
+    String input = Serial.readStringUntil('\n');    
     int arr[2];  // To be used for holding parameters
     // Parses command to be executed and adds parameters to arr
     String command = parseArgs(input, arr);
@@ -41,7 +40,7 @@ void loop() {
       int read = analogRead(arr[0]);
       Serial.println(read);
     } else {
-      Serial.println("Command not recognized");
+      Serial.println(-1);
     } 
   }
 }
