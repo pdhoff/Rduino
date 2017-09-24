@@ -8,6 +8,6 @@ while (!off) {
 	set_apin(5, intensity)
 	off <- get_dpin(4)
 }
-set_apin(11, 0)
-set_apin(5, 0)
+set_dpin(11, 0)
+set_dpin(5, 0)
 rduino_close()

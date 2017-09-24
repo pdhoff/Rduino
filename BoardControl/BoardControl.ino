@@ -23,7 +23,8 @@ void setup() {
 void loop() {
   // If input has been received via Serial
   if (Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n');    
+    String input = Serial.readStringUntil('\n');   
+    Serial.println("");
     int arr[2];  // To be used for holding parameters
     // Parses command to be executed and adds parameters to arr
     String command = parseArgs(input, arr);

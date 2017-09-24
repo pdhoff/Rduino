@@ -24,10 +24,7 @@ rduino_connect<-function(baudMode)
 	  mode=baudMode,buffering="none",newline=1,translation="lf")
 
   	open(rduino_connection) 
-	Sys.sleep(2)  # Allow time for the connection to initiate
-	#f<-file(paste("/dev/",port,sep=""), open="r+")
-	#readChar(f,6)
-	#close(f)
+	Sys.sleep(3)  # Allow time for the connection to initiate
 } 
 
 set_dpin<-function(pin,value)   
@@ -37,15 +34,12 @@ set_dpin<-function(pin,value)
 
 get_dpin<-function(pin)
 { 
-	#start<-proc.time()[[1]]
-	#cur<-0
   	write.serialConnection(rduino_connection,paste("digRead",pin,sep=","))      
   	val<-NA 
  	while(is.na(val))
  	{
   		tmp<-read.serialConnection(rduino_connection)
    		val<-as.numeric(gsub('\\n','',tmp))  
-		#cur<-proc.time()[[1]] - start
   	}
   	val
 }
@@ -53,19 +47,17 @@ get_dpin<-function(pin)
 set_apin<-function(pin,value)
 {
   	write.serialConnection(rduino_connection,paste("anWrite",pin,value,sep=","))
+	paste("anWrite",pin,value,sep=",")
 }
 
 get_apin<-function(pin)
 {
-	#start<-proc.time()[[1]]
-	#cur<-0
 	write.serialConnection(rduino_connection,paste("anRead,",pin,sep=""))
 	val<-NA
 	while(is.na(val))
 	{
 		tmp<-read.serialConnection(rduino_connection)
 		val<-as.numeric(gsub('\\n','',tmp))
-		#cur<-proc.time()[[1]] - start
 	}
 	val
 }
