@@ -1,4 +1,7 @@
 #include "lib.h"
+#include <Servo.h>
+
+Servo servo;
 
 void setup() {
   pinMode(digPin1, OUTPUT);
@@ -16,32 +19,37 @@ void setup() {
   pinMode(digPin13, OUTPUT);
   // Otherwise strange bits are written to serial
   delay(500);
-  Serial.begin(9600);
-
+  Serial.begin(38400);
+  Serial.println(""); // allow first read
 }
 
 void loop() {
   // If input has been received via Serial
   if (Serial.available() > 0) {
     String input = Serial.readStringUntil('\n');   
-    Serial.println("");
     int arr[2];  // To be used for holding parameters
     // Parses command to be executed and adds parameters to arr
     String command = parseArgs(input, arr);
     
     // Logic handling
-    if (command == "digWrite") {
+    if (command.equals("digWrite")) {
       digitalWrite(arr[0], arr[1]); 
-    } else if (command =="digRead") {
+    } else if (command.equals("digRead")) {
       int read = digitalRead(arr[0]);
       Serial.println(read);
-    } else if (command == "anWrite") {
+    } else if (command.equals("anWrite")) {
       analogWrite(arr[0], arr[1]);
-    } else if (command == "anRead") {
+    } else if (command.equals("anRead")) {
       int read = analogRead(arr[0]);
       Serial.println(read);
-    } else {
-      Serial.println(-1);
+    } else if (command.equals("onPulse")) {
+      servo.attach(arr[0]);
+      servo.writeMicroseconds(arr[1]);
+    } else if (command.equals("offPulse")) {
+      servo.detach();
+    }
+    else {
+      Serial.println(input);
     } 
   }
 }

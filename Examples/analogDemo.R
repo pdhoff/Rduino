@@ -1,5 +1,5 @@
 source("../BoardControl/functions.R")
-rduino_connect("9600,n,8,1")
+rduino_connect("38400,n,8,1")
 
 off <- get_dpin(4)
 while (!off) {

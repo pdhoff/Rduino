@@ -62,6 +62,16 @@ get_apin<-function(pin)
 	val
 }
 
+start_pulse<-function(pin,value) 
+{
+	write.serialConnection(rduino_connection,paste("onPulse",pin,value,sep=","))
+}
+
+stop_pulse<-function() 
+{
+	write.serialConnection(rduino_connection,paste("offPulse"))
+}
+
 rduino_close <- function() 
 {
 	close(rduino_connection)

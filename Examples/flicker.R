@@ -1,7 +1,7 @@
 source("../BoardControl/functions.R")
 
 delay <- 0.05
-rduino_connect("9600,n,8,1")
+rduino_connect("38400,n,8,1")
 
 for (i in 0:9) {
 	set_dpin(8, 1)
