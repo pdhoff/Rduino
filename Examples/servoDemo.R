@@ -1,4 +1,4 @@
-source("../BoardControl/functions.r")
+source("../BoardControl/functions.R")
 rduino_connect("38400,n,8,1")
 
 off<-get_dpin(4)
