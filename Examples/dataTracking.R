@@ -1,5 +1,5 @@
-source("../BoardControl/functions.R")
-rduino_connect("38400,n,8,1")
+library(Rduino)
+rduino_connect(baud="38400",mode="n,8,1",upload=FALSE)
 
 time <- 0:24
 data <- rep(NA, 25)

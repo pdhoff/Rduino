@@ -1,32 +1,33 @@
-#include "lib.h"
-#include <Servo.h>
+#include<Servo.h>
 
 Servo servo;
 
 void setup() {
-  pinMode(digPin1, OUTPUT);
-  pinMode(digPin2, OUTPUT);
-  pinMode(digPin3, OUTPUT);
-  pinMode(digPin4, OUTPUT);
-  pinMode(digPin5, OUTPUT);
-  pinMode(digPin6, OUTPUT);
-  pinMode(digPin7, OUTPUT);
-  pinMode(digPin8, OUTPUT);
-  pinMode(digPin9, OUTPUT);
-  pinMode(digPin10, OUTPUT);
-  pinMode(digPin11, OUTPUT);
-  pinMode(digPin12, OUTPUT);
-  pinMode(digPin13, OUTPUT);
+  pinMode(0, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   // Otherwise strange bits are written to serial
   delay(500);
   Serial.begin(38400);
+  // initialize pulse
   Serial.println(""); // allow first read
 }
 
 void loop() {
   // If input has been received via Serial
   if (Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n');   
+    String input = Serial.readStringUntil('\n');  
     int arr[2];  // To be used for holding parameters
     // Parses command to be executed and adds parameters to arr
     String command = parseArgs(input, arr);
@@ -42,13 +43,12 @@ void loop() {
     } else if (command.equals("anRead")) {
       int read = analogRead(arr[0]);
       Serial.println(read);
-    } else if (command.equals("onPulse")) {
+    } else if (command.equals("onServo")) {
       servo.attach(arr[0]);
-      servo.writeMicroseconds(arr[1]);
-    } else if (command.equals("offPulse")) {
+      servo.write(arr[1]);
+    } else if (command.equals("offServo")) {
       servo.detach();
-    }
-    else {
+    } else {
       Serial.println(input);
     } 
   }

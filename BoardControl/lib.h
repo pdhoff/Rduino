@@ -13,3 +13,5 @@
 #define digPin11 11
 #define digPin12 12
 #define digPin13 13
+volatile int pulsePin = -1;
+volatile int pulseLength = 1500;
