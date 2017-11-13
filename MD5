@@ -1,0 +1,13 @@
+4db653cdefc3ceb724bf814f944d0d4c *DESCRIPTION
+a2b87338839e96608823b1b352753ce2 *NAMESPACE
+c86ada52d4fde525165ff87ca5dc9dd5 *R/functions.R
+25c5dab104a775af4f967a489973f205 *data/BoardControlIno.RData
+0ed1e31fff6b59fa4d382bb4be8e9ee3 *man/BoardControlIno.Rd
+8e39d91cdbbd51f4b691297b1c271321 *man/getApin.Rd
+48786fdd2a936641a8fceb413c820fda *man/getDpin.Rd
+26b4c7fcf290d0d499eb2a85794c063c *man/offServo.Rd
+814ee7bb3cc312694d8269d704d0a931 *man/onServo.Rd
+08e545b475799cadff44f95524a1624c *man/rduinoClose.Rd
+5bcf8cc46a212459f4b47e8887fd55cc *man/rduinoConnect.Rd
+a0cd79f087d3d377fc3f1680b81946d0 *man/setApin.Rd
+3ff2484d5a1232efd408fad7d36da333 *man/setDpin.Rd

@@ -1,0 +1,15 @@
+Package: Rduino
+Version: 0.2
+Date: 2017-10-28
+Title: A Microcontroller Interface
+Description: Functions for connecting to and interfacing with an 'Arduino' or similar device. Functionality includes uploading of sketches, setting and reading digital and analog pins, and rudimentary servo control. This project is not affiliated with the 'Arduino' company, <https://www.arduino.cc/>. 
+Author: Chris Suh, Peter Hoff
+Maintainer: Peter Hoff <peter.hoff@duke.edu>
+RoxygenNote: 6.0.1
+License: GPL-3
+Depends: serial
+LazyData: true
+NeedsCompilation: no
+Packaged: 2017-10-29 18:24:12 UTC; pdhoff
+Repository: CRAN
+Date/Publication: 2017-10-30 12:16:46 UTC
