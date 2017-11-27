@@ -1,6 +1,6 @@
 # Usage
 
-##### Setup
+### Setup
 **Linux Only:** Follow the instructions at [this website] [6] to allow access to the device files associated with the Arduino.
 Download the files, open BoardControl.ino in the BoardControl folder, and then upload the code to the Arduino from within the Arduino IDE. In R, run the following:
 ```R
@@ -11,12 +11,16 @@ rduinoConnect(baud=baudrate, mode="serial-mode", upload=FALSE, arduino="path-to-
 The baud parameter is an integer that describes the rate at which serial communication happens. This number should agree with the parameter used in Serial.begin() in the Arduino sketch if the upload parameter is FALSE.
 The mode parameter is a string that describes the serial connection in the form of *parityBit,dataBits,stopBits*. The mode set in R should reflect the mode of the serial connection in the Arduino code as defined in the Serial.begin() function. The parityBit can be set to *n*,*o*,*e*,*m*, or *s*, which stand for none, odd, even, mark, or space, respectively. However, the Arduino only supports none, odd, and even parity bit settings. The dataBits should be an integer from 5 to 8, and stopBits should be 1 or 2. It should be noted that although most of the arguments are integers, the mode argument is actually a single string that seperates the individual arguments with commas ("n,8,1"). The upload parameter allows Rduino to edit the Arduino sketch so that a new baud rate can be established. If set to TRUE, R will load the Arduino sketch as an RData object, modify the arguments in Serial.begin(), and then use the command line executable included with the Arduino IDE to upload the modified sketch to the Arduino. Lastly, the arduino parameter allows the user to specify the path to the command line executable, which can vary on Linux. However, on macOS, the executable should always be in the default location, so this should be unused. The rduinoConnect function has a built-in delay for 3 seconds to allow the connection to properly initialize before attempting to read or write from it. After this, the other included functions can be used to control the Arduino board as desired.
 
-##### In R
-There are four main commands that can be issed via writing to the serial connection:
+### In R
+There are eight main commands that can be issed via writing to the serial connection:
 1. setDpin(pin, value)
 2. getDpin(pin)
 3. setApin(pin, value)
 4. getApin(pin)
+5. onServo(pin, value)
+6. offServo()
+7. onSignal(freq, dutyCycle1, dutyCycle2)
+8. offSignal()
 
 setDpin identifies a digital pin and then outputs either HIGH or LOW, depending on whether value is 1 or 0.
 ```R 
@@ -43,9 +47,10 @@ offServo detaches all servos, allowing normal operation of analog pins. Servos a
 ```R
 offServo()           # detaches all servos
 ```
-onSignal generates a square wave with the frequency and dutyCycle as specified by manipulating the registers that control PWM. Due to the limitations of using a 16-bit timer, the range of possible frequencies is 1Hz-31.25kHz. The dutyCycle describes the percentage of time that the signal should spend on HIGH, and is given by a value between 0-1. 
+onSignal generates a square wave with the frequency and duty cycle as specified by manipulating the registers that control PWM. Due to the limitations of using a 16-bit timer, the range of possible frequencies is 1Hz-31.25kHz.The second parameter describes the percentage of time that the signal should spend on HIGH on pin 9, and is given by a value between 0-1, while the third parameter is the duty cycle for pin 10, and is also given by a value between 0-1. 
 ```R
-onSignal(2, 0.5)    # generates a square wave with frequency of 2Hz and a dutyCycle of 0.5
+onSignal(2, 0.5, 0.25)    # generates a square wave with frequency of 2Hz and a duty cycles
+                          # of 0.5 and 0.25 on pins 9 and 10, respectively.
 ```
 offSignal resets the PWM registers to the defaults so that setApin works properly on the affected pins.
 ```R

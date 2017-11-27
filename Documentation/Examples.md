@@ -1,6 +1,6 @@
 # Examples
 
-##### analogDemo.R
+### analogDemo.R
 ``` R
 source("../BoardControl/functions.R")
 rduino_connect("38400,n,8,1")
@@ -19,7 +19,7 @@ rduino_close()
 ```
 This example initiates a connection between R and the Arduino at 38400 baud with no parity bit, 8 data bits, and 1 stop bit. It then varies the voltage at the PWM pins connected to LEDs so that the brightness of the LED can be controlled by the potentiometer (It is divided by 4 to properly scale with the brightness levels of the LED; the potentiometer can vary between 0-1023 while the LED varies between 0-255). The while loop continues until the pushbutton is pressed, which sends "1" to R, which then causes the while loop to be exited. This examples showcases the potential of Rduino to respond to inputs from the Arduino pins.
 
-##### dataTracking.R
+### dataTracking.R
 ```R
 source("../BoardControl/functions.R")
 rduino_connect("38400,n,8,1")
@@ -45,7 +45,7 @@ rduino_close()
 ```
 dataTracking.R connects to the Arduino at 38400 baud with no parity bit, 8 data bits, and 1 stop bit. It then creates a plot, and reads in values from the potentiometer and adds them to the plot every 0.05 seconds. Every 25 points, it refreshes the plot, and continues to loop through this process until the pushbutton is pressed. This simple examples demonstrates the potential for Rduino to provide real time updates while gathering data through the Arduino. 
 
-##### digitalDemo.R
+### digitalDemo.R
 ```R
 source("../BoardControl/functions.R")
 rduino_connect("38400,n,8,1")
@@ -67,7 +67,7 @@ rduino_close()
 ```
 digitalDemo.R is similar to analogDemo.R, but with an emphasis on the usability and speed of the digital components of Rduino. After initializing a connection at 38400 baud with no parity bit, 8 data bits, and 1 stop bit, if continually reads in from the digital pin so that when the digital pin is pressed, the LEDs are lit. When the potentiometer is set to 1023, the program ends and the connection is terminated. 
 
-##### flicker.R
+### flicker.R
 ```R
 source("../BoardControl/functions.R")
 
@@ -85,7 +85,7 @@ rduino_close()
 ```
 flicker.R simply tests the speed of the Rduino package. It rapidly turns the LEDs on and off, to show that communication between R and Arduino happens quickly.
 
-##### servoDemo.R
+### servoDemo.R
 ```R
 source("../BoardControl/functions.R")
 rduino_connect("38400,n,8,1")
