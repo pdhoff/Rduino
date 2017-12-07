@@ -5,12 +5,14 @@
 \title{On Signal
 Generate a square wave, from 1Hz to 31.25kHz, with resolution of 16us}
 \usage{
-onSignal(freq, dutyCycle)
+onSignal(freq, dutyCycle1, dutyCycle2)
 }
 \arguments{
 \item{freq}{the frequency of the wave, in Hz}
 
-\item{dutyCycle}{the percentage of the time the wave should spend at HIGH}
+\item{dutyCycle1}{the percentage of time that pin 9 should spend at HIGH}
+
+\item{dutyCycle2}{the percentage of time that pin 10 should spend at HIGH}
 }
 \description{
 On Signal
