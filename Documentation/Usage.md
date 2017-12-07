@@ -58,7 +58,7 @@ offSignal()
 ```
 After finishing work with Rduino, run the following to close the serial connection:
 ```R
-rduino_close()    
+rduinoClose()    
 ```
 
 [6]: https://www.arduino.cc/en/Guide/Linux
