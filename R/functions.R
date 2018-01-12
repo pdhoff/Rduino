@@ -41,8 +41,8 @@ rduinoConnect<-function(baud=38400,mode="n,8,1",upload=FALSE,arduino=NULL)
     port<-list.files(path="/dev/serial/by-id")
     port<-Sys.readlink(paste("/dev/serial/by-id/",port,sep=""))
     if(is.null(arduino)){ arduino<-"./arduino" }
-    uport<-port
     port<-gsub("../","",port)
+    uport<-port
   } 
   else if (grepl("darwin", version$os)) 	
   {
