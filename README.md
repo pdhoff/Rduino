@@ -10,7 +10,7 @@ The Rduino package depends on the serial package, which can be downloaded and in
 
 ### Installing
 
-**Linux Only:** Follow the instructions at [this website] [1] to allow access to the device files associated with the Arduino.
+**Linux Only:** Follow the instructions at [this website](https://www.arduino.cc/en/Guide/Linux) to allow access to the device files associated with the Arduino.
 In R, run the following:
 ```R
 > install.packages("Rduino")
@@ -25,8 +25,12 @@ If Rduino is installed properly, the following code should return 0 on an Arduin
 [1] 0
 ```
 
+## Examples
+[Examples](https://github.com/pdhoff/Rduino/tree/testing/Examples) detailing the use of the Rduino package in various scenarios.
+
 ## License
 
 This project is licensed under the GNU GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 [1]: https://www.arduino.cc/en/Guide/Linux
+[2]: https://github.com/pdhoff/Rduino/tree/testing/Examples
