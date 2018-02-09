@@ -273,6 +273,10 @@ offSignal<-function()
   write.serialConnection(rduinoConnection,"offSignal,")
 }
 
+sample<-function(readPin, sdPin, time) {
+
+}
+
 #' Rduino disconnect
 #'
 #' Disconnect a previously connected Arduino or similar device
