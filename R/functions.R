@@ -34,7 +34,7 @@ NULL
 #' }
 #' 
 #' @export
-rduinoConnect<-function(baud=38400,mode="n,8,1",upload=FALSE,arduino=NULL)
+rduinoConnect<-function(baud=38400,mode="n,8,1",upload=FALSE,arduino=NULL,sdPin=8)
 {  
   if (version$os == "linux-gnu") 
   {
@@ -76,6 +76,7 @@ rduinoConnect<-function(baud=38400,mode="n,8,1",upload=FALSE,arduino=NULL)
 
   open(rduinoConnection) 
   Sys.sleep(3)  # Allow time for the connection to initiate
+  read.serialConnection(rduinoConnection)
 } 
 
 
@@ -273,8 +274,33 @@ offSignal<-function()
   write.serialConnection(rduinoConnection,"offSignal,")
 }
 
-sample<-function(readPin, sdPin, time) {
-
+#' Rduino Sample
+#'
+#' Samples in as quickly as possible from given pin for specified duration
+#'
+#' @param readPin the analog pin to read in from
+#' @param time the length of time (ms) that the Arduino should read data for
+#'
+#' @export
+rduinoSample<-function(readPin, time) {
+  write.serialConnection(rduinoConnection,paste("sample",readPin,time,sep=","))
+  # to make sure that sample reading has been completed
+  readOutput<-""
+  while (nchar(readOutput) == 0) {
+    Sys.sleep(1)
+    readOutput<-read.serialConnection(rduinoConnection)
+  }
+  # to make sure that data transfer has finished
+  Sys.sleep(0.5)
+  secondRead<-read.serialConnection(rduinoConnection)
+  while (nchar(secondRead) > 0) {
+    readOutput<-paste(readOutput, secondRead)
+    Sys.sleep(0.5)
+    secondRead<-read.serialConnection(rduinoConnection)
+  }
+  dt<-read.table(text=readOutput, sep=",")
+  colnames(dt)<-c("time", "val")
+  dt
 }
 
 #' Rduino disconnect

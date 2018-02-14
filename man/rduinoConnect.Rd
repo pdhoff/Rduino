@@ -5,7 +5,7 @@
 \title{Rduino connect}
 \usage{
 rduinoConnect(baud = 38400, mode = "n,8,1", upload = FALSE,
-  arduino = NULL)
+  arduino = NULL, sdPin = 8)
 }
 \arguments{
 \item{baud}{baud rate}
