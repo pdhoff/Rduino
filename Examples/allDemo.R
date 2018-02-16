@@ -5,56 +5,56 @@
 #		  pushbutton on pin 4
 #		  servo on pin 9
 library(Rduino)
-rduino_connect(baud="19200",mode="n,8,1",upload=TRUE)
+rduinoConnect(baud="19200",mode="n,8,1",upload=TRUE)
 
-# set_dpin
+# setDpin
 # flash LED rapidly
 for (i in 0:9) {
-	set_dpin(8,1)
+	setDpin(8,1)
 	Sys.sleep(0.05)
-	set_dpin(8,0)
+	setDpin(8,0)
 	Sys.sleep(0.05)
 }
 
-# get_dpin
+# getDpin
 # LED remains on until pushbutton is pressed
-isPressed<-get_dpin(4)
-set_dpin(5,1)
+isPressed<-getDpin(4)
+setDpin(5,1)
 while (!isPressed) {
-	isPressed<-get_dpin(4)
+	isPressed<-getDpin(4)
 }
-set_dpin(5,0)
+setDpin(5,0)
 
-# set_apin
+# setApin
 # gradually increases intensity of LED
 for (i in seq(from=1,to=256,by=5)) {
-	set_apin(11,i)
+	setApin(11,i)
 	Sys.sleep(0.05)
 }
 
-# get_apin and servo
+# getApin and servo
 # set position of servo to position of potentiometer
-off<-get_dpin(4)
+off<-getDpin(4)
 while (!off) {
-	angle<-get_apin(5)
+	angle<-getApin(5)
 	angle<- 1.68 * angle + 575
 	set_servo(9,angle)
-	off<-get_dpin(4)
+	off<-getDpin(4)
 }
-off_servo()
+offServo()
 
 # upload capabilities 
 # change baud rate and then flash LED
-rduino_close()
-rduino_connect(baud="38400",mode="n,8,1",upload=TRUE)
+rduinoClose()
+rduinoConnect(baud="38400",mode="n,8,1",upload=TRUE)
 for (i in 0:9) {
-	set_dpin(8,1)
+	setDpin(8,1)
 	Sys.sleep(0.05)
-	set_dpin(8,0)
+	setDpin(8,0)
 	Sys.sleep(0.05)
 }
 
-rduino_close()
+rduinoClose()
 
 # change baud rate to default
 
