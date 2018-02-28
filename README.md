@@ -27,8 +27,8 @@ If Rduino is installed properly, the following code should return 0 on an Arduin
 
 ## Examples
 [Examples](https://github.com/pdhoff/Rduino/tree/testing/Examples) detailing the use of the Rduino package in various scenarios.  
-**For the following examples, use the wiring schematic below:**
-<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/LEDs_bb.png" width="48">
+**For the following examples, use the wiring schematic below:**  
+<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/LEDs_bb.png" width="192">
 ##### [analogDemo.R](https://github.com/pdhoff/Rduino/blob/master/Examples/analogDemo.R)
 ``` R
 library(Rduino)
