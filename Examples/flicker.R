@@ -1,3 +1,6 @@
+# Example demonstrating responsiveness of Rduino package
+# wiring: see "LED" schematic in /Examples/Schematics
+
 library(Rduino)
 rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
 delay <- 0.05

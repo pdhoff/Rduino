@@ -1,3 +1,6 @@
+# Example showcasing analog output
+# wiring: see "LED" schematic in /Examples/Schematics
+
 library(Rduino)
 
 rduinoConnect(baud=38400,mode="n,8,1")

@@ -1,3 +1,6 @@
+# Example showcasing upload functionality of Rduino package
+# wiring: see "LED" schematic in /Examples/Schematics
+
 library(Rduino)
 rduinoConnect(baud=9600,mode="n,8,1",upload=TRUE)
 
