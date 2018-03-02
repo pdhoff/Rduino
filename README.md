@@ -10,7 +10,8 @@ The Rduino package depends on the serial package, which can be downloaded and in
 
 ### Installing
 
-**Linux Only:** Follow the instructions at [this website](https://www.arduino.cc/en/Guide/Linux) to allow access to the device files associated with the Arduino.
+**Linux Only:** Follow the instructions at [this website](https://www.arduino.cc/en/Guide/Linux) to allow access to the device files associated with the Arduino.  
+
 In R, run the following:
 ```R
 > install.packages("Rduino")
@@ -28,8 +29,8 @@ If Rduino is installed properly, the following code should return 0 on an Arduin
 ## Examples
 [Examples](https://github.com/pdhoff/Rduino/tree/testing/Examples) detailing the use of the Rduino package in various scenarios.  
 **For the following examples, use the wiring schematic below:**  
-<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/LEDs_bb.png" width="192">
-##### [analogDemo.R](https://github.com/pdhoff/Rduino/blob/master/Examples/analogDemo.R)
+<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/LEDs_bb.png" width="384">
+#### [analogDemo.R](https://github.com/pdhoff/Rduino/blob/master/Examples/analogDemo.R)
 ``` R
 library(Rduino)
 rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
@@ -151,7 +152,8 @@ rduinoClose()
 ```
 uploadDemo.R connects to the Arduino at two different baud rates. After the first connection, an analog pin is set at levels from 1 to 256 with steps of 5, which increases the intensity of the LED at pin 11 and then turns it off on the last step. After the second connection, pin 8 rapidly flashes on and off. The LED portion of the code proves that the connection established prior uploaded the modified Arduino sketch correctly so that R can continue to interface with the Arduino.
 
-**For the rest of the examples, use the wiring schematic below:**
+**For the next example, use the wiring schematic below:**
+<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/SD%20card.png" width="384">
 
 #### [sampleDemo.R](https://github.com/pdhoff/Rduino/blob/testing/Examples/sampleDemo.R)
 ```R
@@ -164,6 +166,9 @@ dt<-rduinoSample(0,10000)
 plot(dt)
 ```
 sampleDemo demonstrates the sampling abilities of the Rduino package. The rduisnoSample command takes two arguments, the analog pin to read in from, and the time, in milliseconds, for the Arduino to read in for.  This information is returned as a datatable with two columns: time and val. The current implementation of the sample command simply reads in values as fast as possible, so the readings may be somewhat irregular, which is why the time column is included. This example samples for 10 seconds, and then plots the readings against the time column.
+
+**For the next example, use the wiring schematic below:**
+<img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/Signal.png" width="384">
 
 #### [signalDemo.R](https://github.com/pdhoff/Rduino/blob/testing/Examples/signalDemo.R)
 ```R
