@@ -1,5 +1,5 @@
-# Example showcasing analog output
-# wiring: see "LED" schematic in /Examples/Schematics
+# Example showcasing sampling functionality of Rduino package
+# wiring: see "SD card" schematic in /Examples/Schematics
 
 library(Rduino)
 
