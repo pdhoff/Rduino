@@ -196,7 +196,7 @@ setApin<-function(pin,value)
 #' @export
 getApin<-function(pin)
 {
-  write.serialConnection(rduinoConnection,paste("anRead,",pin,sep=""))
+  write.serialConnection(rduinoConnection,paste("anRead",pin,sep=","))
   val<-NA
   while(is.na(val))
   {

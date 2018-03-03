@@ -1,9 +1,6 @@
 # Examples showcasing basic functionality of the Rduino package
-# hardware: Arduino Uno
-# wiring: LEDs on pins 5, 8, and 11
-#		  potentiometer on analog pin 5
-#		  pushbutton on pin 4
-#		  servo on pin 9
+# wiring: see "LED" schematic in /Examples/Schematics
+
 library(Rduino)
 rduinoConnect(baud="19200",mode="n,8,1",upload=TRUE)
 

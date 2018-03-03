@@ -1,3 +1,6 @@
+# Example showcasing signal functionality of Rduino package
+# wiring: see "Signal" schematics in Examples/Schematics
+
 library(Rduino)
 rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
 

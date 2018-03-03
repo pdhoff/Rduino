@@ -1,3 +1,6 @@
+# Example showcasing sampling functionality of Rduino package
+# wiring: see "SD card" schematic in /Examples/Schematics
+
 library(Rduino)
 
 rduinoConnect(baud=38400,mode="n,8,1")

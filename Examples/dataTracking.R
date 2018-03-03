@@ -1,3 +1,6 @@
+# Example demonstrating data tracking from inputs using Rduino package
+# wiring: see "LED" schematic in /Examples/Schematics
+
 library(Rduino)
 rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
 
