@@ -201,7 +201,6 @@ while (!off) {
     crossedThresh <- FALSE
     heartbeats <- heartbeats + 1
     elapsed <- proc.time()[["elapsed"]] - startTime
-    #print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
 		print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
   }
 	off <- getDpin(4)
@@ -210,7 +209,8 @@ while (!off) {
 }
 rduinoClose()
 ```
-heartBeatDemo.R replaces the potentiometer in the associated schematic with an Adafruit Pulse Sensor, and takes readings from the index fingers and plots them. It will also print the calculated heart rate to the console. The threshold for what constitutes a heart beat has been determined experimentally from readings taken from the index finger, so unexpected results may occur. 
+heartBeatDemo.R replaces the potentiometer in the associated schematic with an Adafruit Pulse Sensor, and takes readings from the index fingers and plots them. It will also print the calculated heart rate to the console. The threshold for what constitutes a heart beat has been determined experimentally from readings taken from the index finger, so unexpected results may occur.
+
 **For the next example, use the wiring schematic below:**  
 <img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/Signal.png" width="384">
 
