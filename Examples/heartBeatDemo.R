@@ -34,7 +34,6 @@ while (!off) {
     crossedThresh <- FALSE
     heartbeats <- heartbeats + 1
     elapsed <- proc.time()[["elapsed"]] - startTime
-    #print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
 		print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
   }
 	off <- getDpin(4)

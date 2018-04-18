@@ -72,7 +72,7 @@ while (!off) {
 }
 rduinoClose()
 ```
-dataTracking.R connects to the Arduino at 38400 baud with no parity bit, 8 data bits, and 1 stop bit. It then creates a plot, and reads in values from the potentiometer and adds them to the plot every 0.05 seconds. Every 25 points, it refreshes the plot, and continues to loop through this process until the pushbutton is pressed. This simple examples demonstrates the potential for Rduino to provide real time updates while gathering data through the Arduino. 
+dataTracking.R connects to the Arduino at 38400 baud with no parity bit, 8 data bits, and 1 stop bit. It then creates a plot, and reads in values from the potentiometer and adds them to the plot every 0.05 seconds. Every 25 points, it refreshes the plot, and continues to loop through this process until the pushbutton is pressed. This simple examples demonstrates the potential for Rduino to provide real time updates while gathering data through the Arduino.
 
 #### [digitalDemo.R](https://github.com/pdhoff/Rduino/blob/master/Examples/digitalDemo.R)
 ```R
@@ -87,14 +87,14 @@ while (off != 1023) {
 	setDpin(8, switch)
 	setDpin(11, switch)
 	off <- getApin(5)
-}	
+}
 setDpin(2, 0)
 setDpin(5, 0)
 setDpin(8, 0)
 setDpin(11, 0)
 rduinoClose()
 ```
-digitalDemo.R is similar to analogDemo.R, but with an emphasis on the usability and speed of the digital components of Rduino. After initializing a connection at 38400 baud with no parity bit, 8 data bits, and 1 stop bit, if continually reads in from the digital pin so that when the digital pin is pressed, the LEDs are lit. When the potentiometer is set to 1023, the program ends and the connection is terminated. 
+digitalDemo.R is similar to analogDemo.R, but with an emphasis on the usability and speed of the digital components of Rduino. After initializing a connection at 38400 baud with no parity bit, 8 data bits, and 1 stop bit, if continually reads in from the digital pin so that when the digital pin is pressed, the LEDs are lit. When the potentiometer is set to 1023, the program ends and the connection is terminated.
 
 #### [flicker.R](https://github.com/pdhoff/Rduino/blob/master/Examples/flicker.R)
 ```R
@@ -121,7 +121,7 @@ rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
 off<-getDpin(4)
 while (!off) {
 	angle<-getApin(5)
-	angle<-1.68 * angle + 575	# maps potentiometer to servo, varies slightly	
+	angle<-1.68 * angle + 575	# maps potentiometer to servo, varies slightly
 								# for different servos
 	onServo(9, angle)
 	off<-getDpin(4)
@@ -152,7 +152,7 @@ rduinoClose()
 ```
 uploadDemo.R connects to the Arduino at two different baud rates. After the first connection, an analog pin is set at levels from 1 to 256 with steps of 5, which increases the intensity of the LED at pin 11 and then turns it off on the last step. After the second connection, pin 8 rapidly flashes on and off. The LED portion of the code proves that the connection established prior uploaded the modified Arduino sketch correctly so that R can continue to interface with the Arduino.
 
-**For the next example, use the wiring schematic below:**  
+**For the next examples, use the wiring schematic below:**  
 <img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/SD%20card.png" width="384">
 
 #### [sampleDemo.R](https://github.com/pdhoff/Rduino/blob/testing/Examples/sampleDemo.R)
@@ -167,6 +167,50 @@ plot(dt)
 ```
 sampleDemo demonstrates the sampling abilities of the Rduino package. The rduisnoSample command takes two arguments, the analog pin to read in from, and the time, in milliseconds, for the Arduino to read in for.  This information is returned as a datatable with two columns: time and val. The current implementation of the sample command simply reads in values as fast as possible, so the readings may be somewhat irregular, which is why the time column is included. This example samples for 10 seconds, and then plots the readings against the time column.
 
+#### [heartBeatDemo.R](https://github.come/pdhoff/Rduino/blob/testing/Examples/heartBeatDemo.R)
+```R
+library(Rduino)
+rduinoConnect(baud=38400,mode="n,8,1",upload=FALSE)
+
+Sys.sleep(3)
+threshold <- 780
+time <- 0:29
+obs <- rep(NA, length(time))
+off <- getDpin(4)
+iteration <- 1
+plot(obs ~ time, main="Heart Beat", ,ylab="Voltage", xaxt="n", ylim=c(0,1023))
+
+heartbeats <- 0
+crossedThresh <- FALSE
+startTime <- proc.time()[["elapsed"]]
+
+while (!off) {
+  # Refresh plot
+	if (iteration == length(time)) {
+		iteration <- 1
+    obs <- rep(NA, length(time))
+		plot(obs ~ time, main="Heart Beat", ylab="Voltage", xaxt="n", ylim=c(0,1023))
+	}
+	obs[iteration] <- getApin(0)
+	lines(time, obs)
+
+  if (obs[iteration] >= threshold) {
+    crossedThresh <- TRUE
+  }
+  if (crossedThresh & obs[iteration] < threshold) {
+    crossedThresh <- FALSE
+    heartbeats <- heartbeats + 1
+    elapsed <- proc.time()[["elapsed"]] - startTime
+    #print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
+		print(paste("Heart Rate: ", heartbeats / elapsed * 60, sep=""))
+  }
+	off <- getDpin(4)
+	iteration <- iteration + 1
+  Sys.sleep(0.1)
+}
+rduinoClose()
+```
+heartBeatDemo.R replaces the potentiometer in the associated schematic with an Adafruit Pulse Sensor, and takes readings from the index fingers and plots them. It will also print the calculated heart rate to the console. The threshold for what constitutes a heart beat has been determined experimentally from readings taken from the index finger, so unexpected results may occur. 
 **For the next example, use the wiring schematic below:**  
 <img src="https://github.com/pdhoff/Rduino/blob/testing/Examples/Schematics/Signal.png" width="384">
 
@@ -186,6 +230,7 @@ offSignal()
 rduinoClose()
 ```
 signalDemo.R sets a signal at pins 9 and 10 at three different frequencies (1Hz, 30Hz, and 60Hz) for three seconds each. At each frequency, the duty cycles of pins 9 and 10 are independently set.
+
 
 ## License
 
